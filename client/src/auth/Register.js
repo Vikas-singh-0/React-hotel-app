@@ -3,7 +3,9 @@ import { Form, Button } from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
-import register from "../actions/auth";
+// import {register} from "../actions/auth";
+import  axios  from "axios";
+
 const Register = (props) => {
   const navigate = useNavigate()
   const [name, setName] = useState("");
@@ -13,8 +15,13 @@ const Register = (props) => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await register({name,email,password})
+      const res = await axios({
+        url: "http://localhost:8000/api/register",
+        method: "POST",
+        data:{name,email,password}
+      });
       toast("loggedin successfully")
+      console.log(res);
       navigate('/login')
     } catch (error) {
       toast("error occured")
