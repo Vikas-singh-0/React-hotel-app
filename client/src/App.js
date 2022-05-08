@@ -5,18 +5,24 @@ import Home from "./booking/Home";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import TopNav from "./components/TopNav";
-
+import DashBoard from "./User/DashBoard";
+import PrivateRoute from "./components/PrivateRoute";
+// import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
     <>
-    <TopNav/>
-    <Routes>
+      <TopNav />
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/register" element={<Register />} />
+        {/* <PrivateRoute exact path="/dashboard" element={<DashBoard />} /> */}
 
-      <Route exact path="/" element={<Home />}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Register/>}/>
-    </Routes>
+        <Route exact path="/" element={<PrivateRoute />}>
+          <Route exact path="/dashboard" element={<DashBoard />} />
+        </Route>
+      </Routes>
     </>
   );
 }
