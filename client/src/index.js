@@ -4,7 +4,7 @@ import { combineReducers, createStore } from "redux";
 import { Provider } from "react-redux";
 import App from "./App";
 import { composeWithDevTools } from "redux-devtools-extension";
-
+import "antd/dist/antd.css";
 let userState ;
 if (window.localStorage.getItem("auth")) {
   console.log(("in memory", window.localStorage.getItem("auth")));

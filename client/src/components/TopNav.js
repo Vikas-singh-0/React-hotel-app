@@ -6,20 +6,25 @@ const TopNav = () => {
   const navigate =useNavigate()
   const dispatch = useDispatch();
   const logoutHandler = (e)=>{
-
-    
     dispatch({type:'LOGOUT',payload:null})
     window.localStorage.removeItem('auth',null);
-    navigate('/login')
-    
+    navigate('/login')    
+  }
+  const dashboardHandler=(e)=>{
+    navigate('/dashboard') 
   }
 
   const { auth } = useSelector((state) => ({ ...state }));
 
-  let logout = (
+  let logout = (<>
+     <Link className="nav-link" to="/dashboard" onClick={dashboardHandler}>
+      dashboard
+    </Link>
     <Link className="nav-link" to="/login" onClick={logoutHandler}>
     Logout
-  </Link>
+    </Link>
+
+  </>
   )
   let logeedIN = (
     <>

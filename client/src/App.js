@@ -7,6 +7,8 @@ import Register from "./auth/Register";
 import TopNav from "./components/TopNav";
 import DashBoard from "./User/DashBoard";
 import PrivateRoute from "./components/PrivateRoute";
+import DashBoardSeller from "./User/DashBoardSelller";
+import PrivateRoute2 from "./components/PrivateRoute2";
 // import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
         <Route exact path="/" element={<PrivateRoute />}>
           <Route exact path="/dashboard" element={<DashBoard />} />
         </Route>
+        <Route exact path="/dashboard/seller" element={<DashBoardSeller />} />
+
       </Routes>
     </>
   );

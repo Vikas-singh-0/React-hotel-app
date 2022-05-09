@@ -47,7 +47,8 @@ export const login = async (req, res) => {
       if (!match||err) {
         return res.json({ success: false, message: "cred wrong" });
       }
-      let token = jwt.sign({_id:user._id},process.env.JWT_SECRET,{
+      console.log("user ID**************** " , user._id ,"user -------------" ,userExist);
+      let token = jwt.sign({_id:userExist._id},process.env.JWT_SECRET,{
         expiresIn:'7d'
       })
       return res.json({ token:token,user:{name:userExist.name,email:userExist.email,_id:userExist._id} });

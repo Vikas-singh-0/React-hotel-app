@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
 import DashBoard from '../User/DashBoard';
 
-const PrivateRoute = () => {
+const PrivateRoute = (props) => {
+    // console.log(props);
     const {auth} = useSelector(state=>({...state})); // determine if authorized, from context or however you're doing it
 
     // If authorized, return an outlet that will render child elements
