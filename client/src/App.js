@@ -8,6 +8,7 @@ import TopNav from "./components/TopNav";
 import DashBoard from "./User/DashBoard";
 import PrivateRoute from "./components/PrivateRoute";
 import DashBoardSeller from "./User/DashBoardSelller";
+import StripeCallback from './stripe/StripeCallback';
 import PrivateRoute2 from "./components/PrivateRoute2";
 // import PrivateRoute from "./components/PrivateRoute";
 
@@ -25,8 +26,9 @@ function App() {
           <Route exact path="/dashboard" element={<DashBoard />} />
         </Route>
         <Route exact path="/dashboard/seller" element={<DashBoardSeller />} />
-
+        <Route exact path="/stripe/callback" element={<StripeCallback/>}/>
       </Routes>
+      
     </>
   );
 }

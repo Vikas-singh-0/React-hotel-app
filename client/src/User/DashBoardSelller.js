@@ -52,6 +52,7 @@ const handleClick = async () => {
       }
     })
     console.log(res); // get login link
+    window.location.href = res.data
   } catch (err) {
     console.log(err);
     toast.error("Stripe connect failed, Try again.");
@@ -62,6 +63,7 @@ const handleClick = async () => {
 
 const notConnected = () => (
   <div className="container-fluid">
+    <DashboardNav />
     <div className="row">
       <div className="col-md-6 offset-md-3 text-center">
         <div className="p-5 pointer">
@@ -99,7 +101,7 @@ const notConnected = () => (
         <ConnectNav />
       </div>
       {
-        auth && auth.user &&auth.user.stripe_seller ? connected() : notConnected()
+        auth && auth.user &&auth.user.stripe_seller && auth.user.stripe_seller.charges_enabled ? connected() : notConnected()
       }
     </>
   );
