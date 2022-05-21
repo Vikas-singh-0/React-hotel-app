@@ -4,7 +4,7 @@ import { Card,Button } from "react-bootstrap"
 import React from 'react'
 
 export default function CardR({h}) {
-  console.log(h);
+  // console.log(h);
   return (
         <Card>
         <Card.Header>{h.title}</Card.Header>

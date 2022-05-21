@@ -12,7 +12,7 @@ const NewHotel = () => {
   const {auth} = useSelector((state)=>({...state}))
   const token = auth.token;
 
-  console.log("the token is ****************",token);
+  // console.log("the token is ****************",token);
   const [preview, setPreview] = useState(
     "https://via.placeholder.com/150x150.png?text=Visit+WhoIsHostingThis.com+Buyers+Guide"
   );

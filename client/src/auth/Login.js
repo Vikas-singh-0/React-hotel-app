@@ -22,13 +22,13 @@ const Login = () => {
         method: "POST",
         data:{email,password}
       });
-      console.log("login data",data);
+      // console.log("login data",data);
       window.localStorage.setItem('auth',JSON.stringify(data))
       dispatch({type:'LOG_IN_USER',payload:data})
       toast("loggedin successfully");
       navigate("/");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast("error occured",error);
     }
   };
@@ -36,7 +36,7 @@ const Login = () => {
 
 
   const store = useSelector((store=>({...store})))
-  console.log("store",store);
+  // console.log("store",store);
  
 
 

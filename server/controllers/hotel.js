@@ -1,5 +1,24 @@
 import fs from "fs";
 import Hotel from "../modals/hotel";
+import Order from "../modals/order";
+
+export const bookHotel = async (req, res) => {
+
+  try {
+    // console.log(req.params.hotelId,req.auth._id);
+    const orderName = await Order.create({
+      hotel:req.params.hotelId,
+      orderedBy:req.auth._id
+    })
+    // console.log(orderName);
+    return res.json({orderName})
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({
+      err: err.message,
+    });
+  }
+};
 
 export const newHotel = async (req, res) => {
   //   console.log("req.fields", req.fields);
@@ -32,7 +51,6 @@ export const newHotel = async (req, res) => {
   }
 };
 
-
 export const image = async (req, res) => {
   console.log(req.params.id);
   let hotel = await Hotel.findById(req.params.id);
@@ -54,11 +72,53 @@ export const hotels = async (req, res) => {
   res.json(all);
 };
 
-export const sellerHotels = async(req,res)=>{
-  let all = await Hotel.find({postedBy:req.auth._id})
+export const sellerHotels = async (req, res) => {
+  let all = await Hotel.find({ postedBy: req.auth._id })
     .limit(24)
     .select("-image.data")
     .populate("postedBy", "_id name")
     .exec();
   return res.json(all);
-}
+};
+
+export const userHotels = async (req, res) => {
+  let all = await order
+    .find({ orderedBy: req.auth._id })
+    .limit(24)
+    .select("-image.data")
+    .populate("postedBy", "_id name")
+    .exec();
+  return res.json(all);
+};
+
+export const getHotel = async (req, res) => {
+  try {
+    let one = await Hotel.findById(req.params.id)
+      .select("-image.data")
+      .populate("postedBy", "_id name")
+      .exec();
+    if (one) {
+      return res.json(one);
+    } else {
+      return res.json({ error: "no matches" });
+    }
+  } catch (error) {
+    return res.json({ error });
+  }
+};
+
+export const editHotel = async (req, res) => {
+  try {
+    let one = await Hotel.findById(req.params.id).select("-image.data");
+    if (one) {
+      let one = await Hotel.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+      }).select("-image.data");
+      return res.json({ updateddata: one });
+    } else {
+      return res.json({ error: "no matches" });
+    }
+  } catch (error) {
+    return res.json({ error });
+  }
+};

@@ -1,17 +1,32 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import ConnectNav from "../components/ConnectNav";
 import DashboardNav from "../components/DashboardNav";
 import { getAccountStatus,getAccountBalance } from "../actions/stripe";
 import { useSelector } from "react-redux";
+import axios from "axios";
+import { userHotels } from "../actions/hotel";
 
 
 export default function DashBoard(props) {
   const auth = useSelector((state) => ({ ...state }));
+  const [getHotelsBooked,sethotelSBooked ]= useState([])
+
+  const fetchHotels =async ()=>{
+    const {data} = await userHotels(auth.token);
+    // console.log(data);
+    sethotelSBooked(data)
+  }
+
+  // useEffect(async () => {
+    // const res = await fetchHotels()
+  // }, [fetchHotels])
+  
+
 
   const getBalance = async () => {
     const res = await getAccountBalance(auth.auth.token);
-    console.log(res);
+    // console.log(res);
   };
   // console.log(props);
   return (

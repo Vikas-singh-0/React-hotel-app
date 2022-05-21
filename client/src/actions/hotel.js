@@ -14,7 +14,21 @@ export const sellerHotels = async (token) => {
       Authorization: `Bearer ${token}`,
     },
   });
-  console.log("in getstatus function DAATTAAAAAAAAA" ,data );
+  // console.log("in getstatus function DAATTAAAAAAAAA" ,data );
+  
+  return data;
+};
+
+
+
+export const userHotels = async (token) => {
+  const  data  = await axios({
+    url: "http://localhost:8000/api/user-hotels",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  // console.log("in getstatus function DAATTAAAAAAAAA" ,data );
   
   return data;
 };

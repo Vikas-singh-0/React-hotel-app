@@ -15,7 +15,7 @@ const Home = () => {
 
   const loadHotels = async()=>{
     const allHotels = await axios({
-      url:'http://localhost:8000/api/hotels'
+      url:`http://localhost:8000/api/hotels`
     })
     // console.log(allHotels.data);
     setAllHotels(allHotels.data)

@@ -9,6 +9,20 @@ export const createConnectAccount = async (token) => {
   });
 };
 
+export const getSessionId = async (token, hotelId) =>
+  await axios.post(
+    `${process.env.REACT_APP_API}/stripe-session-id`,
+    {
+      hotelId,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+
 export const getAccountStatus = async (token) => {
   const  data  = await axios({
     url: "http://localhost:8000/api/get-account-status",

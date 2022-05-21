@@ -17,7 +17,7 @@ export const login = async (user)=>{
 export const updateUserINLocalStorage = async (user,next)=>{
         if (window.localStorage.getItem('auth')) {
                 let auth = JSON.parse(localStorage.getItem('auth'))
-                console.log(auth);
+                // console.log(auth);
                 // auth = user
                 // localStorage.setItem('auth',JSON.stringify(auth))
                 next()

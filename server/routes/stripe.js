@@ -4,7 +4,12 @@ import { expressjwt } from "express-jwt";
 const router = express.Router();
 
 // controllers
-import { createConnectAccount,getAccountStatus,getAccountBalance } from "../controllers/stripe";
+import {
+  createConnectAccount,
+  getAccountStatus,
+  getAccountBalance,
+  stripeSessionId,
+} from "../controllers/stripe";
 import { requiresLogin } from "../middleware";
 
 router.post(
@@ -16,6 +21,12 @@ router.post(
   "/get-account-status",
   expressjwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }),
   getAccountStatus
+);
+
+router.post(
+  "/stripe-session-id",
+  expressjwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }),
+  stripeSessionId
 );
 
 router.post(

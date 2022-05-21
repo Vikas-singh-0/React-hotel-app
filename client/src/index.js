@@ -7,7 +7,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import "antd/dist/antd.css";
 let userState ;
 if (window.localStorage.getItem("auth")) {
-  console.log(("in memory", window.localStorage.getItem("auth")));
+  // console.log(("in memory", window.localStorage.getItem("auth")));
   userState = JSON.parse(window.localStorage.getItem("auth"));
 } else {
   userState = null;
